@@ -107,3 +107,5 @@ dist
 node_modules/
 dist/
 db.sqlite
+
+firebaseService.ts

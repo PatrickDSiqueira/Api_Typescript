@@ -3,6 +3,7 @@ import express from 'express';
 import itensRouter from "./models/routers/itens-router";
 
 import cors from 'cors'
+import eventosRouter from './models/routers/eventos-routes';
 // Porta do servidor
 const PORT = process.env.PORT || 4000
 // Host do servidor
@@ -23,6 +24,7 @@ app.use(cors({
 
 //Rotas
 app.use('/api', itensRouter)
+app.use('/api/admin', eventosRouter)
 // Resposta padrão para quaisquer outras requisições:
 app.use((req:any, res:any) => {
     res.status(404)
