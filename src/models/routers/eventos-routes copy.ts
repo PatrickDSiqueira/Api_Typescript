@@ -6,9 +6,15 @@ const eventosRouter = express.Router()
 
 eventosRouter.post('/eventos', (req, res) => {
 
-    const { nomeEvento, horario, data, categorias, descricao, status } = req.body;
+    interface categoria {
+        id: any,
+        nome: any,
+        maxParticipante: any
+    }
 
-    var categoriasObj= JSON.parse(categorias);
+    const { nomeEvento, horario, data, categorias, descricao } = req.body;
+
+    var categoriasObj: categoria[] = JSON.parse(categorias);
 
     const id = push(child(ref(database), 'eventos')).key;
 
@@ -18,7 +24,6 @@ eventosRouter.post('/eventos', (req, res) => {
         data,
         horario,
         descricao,
-        status,
         categoriasObj
     })
     .then(()=>{
@@ -26,21 +31,61 @@ eventosRouter.post('/eventos', (req, res) => {
     }).catch((error)=>{
         res.json(error);
     })
+
+    // const userId = "fmsf6dsd55";
+    // const nome = "fmsf655";
+    // const cotato = "fmsf655";
+    // const mesa = "fmsf655";
+
+    // get(child(ref(database), `user/${userId}}`))
+    //     .then(
+    //         (sanpshot) => {
+    //             if (sanpshot.exists()) {
+    //                 console.log("Ja exite parça");
+
+    //                 res.json("existe")
+    //             } else {
+    //                 set(ref(database, "user/" + userId), {
+    //                     cotato,
+    //                     nome,
+    //                     mesa,
+    //                 }).then(() => {
+    //                     res.json(req)
+    //                 }).catch((error) => {
+    //                     res.json(error)
+    //                 })
+    //             }
+    //         })
+    //     .catch((error) => {
+    //         res.json(error)
+    //     })
+
+
+    // const item: Item = req.body
+    // //TODO: Criar e salvar um novo item
+    // const id = 123
+    // res.status(201).location(`/eventos/${id}`).send()
+
+    // JSON.parse(req.body.categorias)
+
+    // res.json('200');
 })
 
 eventosRouter.get('/eventos', (req, res) => {
 
-    const dataRetorno : object[] = [];
+    const dataRetorno = {};
 
     const users = ref(database, "eventos/");
     onValue(users, (sanpshot) => {
-        sanpshot.forEach((elem) => {
+        const data = sanpshot.forEach((elem) => {
             const dataFilho = elem.val()
-            dataRetorno.push(dataFilho)
+            res.json(dataFilho)
+            // dataFilho.push(dataFilho)
         });;
     })
 
-    res.json(dataRetorno)
+
+    // ref(database, "eventos/")
 
 })
 
