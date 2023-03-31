@@ -1,21 +1,18 @@
-
 import express from 'express';
-import itensRouter from "./models/routers/itens-router";
-
 import cors from 'cors'
-import eventosRouter from './models/routers/eventos-routes';
-// Porta do servidor
+import eventsRouter from "./routes/eventsRouter";
+// Serve port
 const PORT = process.env.PORT || 4000
-// Host do servidor
+// Serve host
 const HOSTNAME = process.env.HOSTNAME || 'http://localhost'
 // App Express
 const app = express()
 // JSON
 app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-// Endpoint raiz
-app.get('/', (req:any, res:any) => {
-    res.send('Bem-vindo!')
+app.use(express.urlencoded({extended: true}))
+// Endpoint source
+app.get('/', (req: any, res: any) => {
+    res.send('Welcome!')
 })
 // Cors
 app.use(cors({
@@ -23,13 +20,12 @@ app.use(cors({
 }))
 
 //Rotas
-app.use('/api', itensRouter)
-app.use('/api/admin', eventosRouter)
-// Resposta padrão para quaisquer outras requisições:
-app.use((req:any, res:any) => {
+app.use('/api/admin', eventsRouter)
+// Default response to any other requests:
+app.use((req: any, res: any) => {
     res.status(404)
 })
-// Inicia o sevidor
+// Start the server
 app.listen(PORT, () => {
-    console.log(`Servidor rodando com sucesso ${HOSTNAME}:${PORT}`)
+    console.log(`Serve running successfully ${HOSTNAME}:${PORT}`)
 })

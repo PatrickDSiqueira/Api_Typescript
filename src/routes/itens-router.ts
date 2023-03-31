@@ -1,5 +1,5 @@
 import express from 'express'
-import Item from "../item";
+import Item from "../models/item";
 const itensRouter = express.Router()
 itensRouter.post('/itens', (req, res) => {
     const item: Item = req.body
