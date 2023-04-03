@@ -109,3 +109,6 @@ dist/
 db.sqlite
 
 firebaseService.ts
+
+api_hyper_pong.pem
+
