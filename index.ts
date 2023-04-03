@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors'
-import eventsRouter from "./routes/eventsRouter";
+import eventsRouter from "./src/routes/eventsRouter";
 // Serve port
 const PORT = process.env.PORT || 4000
 // Serve host
