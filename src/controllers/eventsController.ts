@@ -3,7 +3,7 @@ import {child, database, get, onValue, push, ref, remove, set, update} from "../
 
 const createEvent = async (req: Request, res: Response) => {
     try {
-        const {nomeEvento, horario, data, categorias, descricao, status} = req.body;
+        const {nomeEvento, horario, data, categorias, descricao, status, prazo, local} = req.body;
 
         const categoriasObj = JSON.parse(categorias);
 
@@ -16,6 +16,8 @@ const createEvent = async (req: Request, res: Response) => {
             horario,
             descricao,
             status,
+            prazo,
+            local,
             categoriasObj
         })
 
