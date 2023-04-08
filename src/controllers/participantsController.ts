@@ -43,15 +43,11 @@ const getAllParticipants = async (req: Request, res: Response) => {
         const participantsRef = ref(database, `eventos/${idEvent}/categoriasObj/${idCategory}/participantes`);
 
         onValue(participantsRef, (snapshot) => {
-            if (snapshot.exists()) {
-                snapshot.forEach((elem) => {
-                    allParticipants.push(elem.val())
-                });
-            } else {
-                res.status(400).json({status: 'ITEM_NOT_FOUND'})
-            }
+            snapshot.forEach((elem) => {
+                allParticipants.push(elem.val())
+            });
         });
-                res.status(200).json(allParticipants);
+        res.status(200).json(allParticipants);
 
     } catch {
         res.status(500).json({status: 'INTERNAL_ERROR'});
