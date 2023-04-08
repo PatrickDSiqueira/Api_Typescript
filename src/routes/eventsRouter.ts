@@ -1,5 +1,6 @@
 import express from "express";
 import eventsController from "../controllers/eventsController";
+import participantsController from "../controllers/participantsController";
 
 const eventsRouter = express.Router()
 
@@ -13,9 +14,11 @@ eventsRouter.put('/events/:id', eventsController.editEvent);
 
 eventsRouter.delete('/events/:id', eventsController._deleteEvent);
 
-eventsRouter.post('/events/:id/category/:idCat/participants', eventsController.createParticipants);
+eventsRouter.post('/events/:id/category/:idCat/participants', participantsController.createParticipants);
 
-eventsRouter.get('/events/:id/category/:idCat/participants', eventsController.getAllParticipants);
+eventsRouter.delete('/events/:id/category/:idCat/participants/:idParticipants', participantsController._deleteParticipants);
+
+eventsRouter.get('/events/:id/category/:idCat/participants', participantsController.getAllParticipants);
 
 eventsRouter.get('/events/:id/category/:idCat/name', eventsController.getNameCategory);
 

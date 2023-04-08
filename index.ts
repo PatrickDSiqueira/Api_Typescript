@@ -20,7 +20,7 @@ app.use(cors({
 }))
 
 //Rotas
-app.use('/api/', eventsRouter)
+app.use('/api/admin/', eventsRouter)
 // Default response to any other requests:
 app.use((req: any, res: any) => {
     res.status(404)
