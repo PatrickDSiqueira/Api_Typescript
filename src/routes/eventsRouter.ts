@@ -14,12 +14,14 @@ eventsRouter.put('/events/:id', eventsController.editEvent);
 
 eventsRouter.delete('/events/:id', eventsController._deleteEvent);
 
+eventsRouter.get('/events/:id/category/:idCat/name', eventsController.getNameCategory);
+
 eventsRouter.post('/events/:id/category/:idCat/participants', participantsController.createParticipants);
 
 eventsRouter.delete('/events/:id/category/:idCat/participants/:idParticipants', participantsController._deleteParticipants);
 
 eventsRouter.get('/events/:id/category/:idCat/participants', participantsController.getAllParticipants);
 
-eventsRouter.get('/events/:id/category/:idCat/name', eventsController.getNameCategory);
+eventsRouter.post('/events/:id/category/:idCat/participants/:idParticipants', participantsController.validateParticipants);
 
 export default eventsRouter;

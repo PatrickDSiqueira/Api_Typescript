@@ -1,5 +1,5 @@
 import {Request, Response} from "express";
-import {child, database, onValue, push, ref, remove, set} from "../../firebaseService";
+import {child, database, onValue, push, ref, remove, set, update} from "../../firebaseService";
 
 const createParticipants = async (req: Request, res: Response) => {
     try {
@@ -53,9 +53,24 @@ const getAllParticipants = async (req: Request, res: Response) => {
         res.status(500).json({status: 'INTERNAL_ERROR'});
     }
 }
+const validateParticipants = async (req: Request, res: Response) => {
+    try {
+        const idEvent = req.params.id;
+        const idCategory = req.params.idCat;
+        const idParticipants = req.params.idParticipants;
+        const actualization = {status: 1};
+
+        await update(ref(database, `eventos/${idEvent}/categoriasObj/${idCategory}/participantes/${idParticipants}`), actualization);
+        res.status(200).json({status: 'ITEM_UPDATE'})
+
+    } catch {
+        res.status(500).json({status: 'INTERNAL_ERROR'})
+    }
+}
 
 export default {
     createParticipants,
     _deleteParticipants,
-    getAllParticipants
+    getAllParticipants,
+    validateParticipants
 }
