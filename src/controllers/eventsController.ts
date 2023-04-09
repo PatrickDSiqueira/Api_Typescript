@@ -1,6 +1,8 @@
 import {Request, Response} from "express";
 import {child, database, get, onValue, push, ref, remove, set, update} from "../../firebaseService";
+import dotenv from 'dotenv';
 
+dotenv.config();
 const createEvent = async (req: Request, res: Response) => {
     try {
         const {nomeEvento, horario, data, categorias, descricao, status, prazo, local} = req.body;
