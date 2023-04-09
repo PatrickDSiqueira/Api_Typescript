@@ -22,7 +22,7 @@ const createEvent = async (req: Request, res: Response) => {
             local,
             categoriasObj
         })
-        res.redirect( `${process.env.FRONTEND}evento/${id}` );
+        res.redirect(`${process.env.FRONTEND}evento/${id}`);
     } catch {
         res.status(500).json({status: 'INTERNAL_ERROR'})
     }
@@ -69,18 +69,18 @@ const getOneEvent = async (req: Request, res: Response) => {
 const _deleteEvent = async (req: Request, res: Response) => {
     try {
         const id = req.params.id;
-        await remove(ref(database, `eventos/${id}`));
-        res.status(200).json('EVENT_DELETE')
+        await remove(ref(database, `eventos/${id}/`));
+        res.status(200).json({status: 'EVENT_DELETE'})
     } catch {
         res.status(500).json({status: 'INTERNAL_ERROR'})
     }
 }
 
-const editEvent = async (req: Request, res: Response) => {
+const updateStatusEvent = async (req: Request, res: Response) => {
     try {
-        const id = req.params.id;
-        const updates = req.body;
-        await update(ref(database, `eventos/${id}`), updates);
+        const {id, status} = req.params;
+        await update(ref(database, `eventos/${id}`), {status: status});
+        res.status(200).json({status: 'ITEM_UPDATE'});
     } catch {
         res.status(500).json({status: 'INTERNAL_ERROR'})
     }
@@ -111,6 +111,6 @@ export default {
     getAllEvents,
     getOneEvent,
     _deleteEvent,
-    editEvent,
+    updateStatusEvent,
     getNameCategory
 }

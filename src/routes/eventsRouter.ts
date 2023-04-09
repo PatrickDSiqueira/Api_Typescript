@@ -10,7 +10,7 @@ eventsRouter.get('/events', eventsController.getAllEvents);
 
 eventsRouter.get('/events/:id', eventsController.getOneEvent);
 
-eventsRouter.put('/events/:id', eventsController.editEvent);
+eventsRouter.post('/events/:id/status/:status', eventsController.updateStatusEvent);
 
 eventsRouter.delete('/events/:id', eventsController._deleteEvent);
 
