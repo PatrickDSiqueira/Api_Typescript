@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 const createEvent = async (req: Request, res: Response) => {
     try {
-        const {nomeEvento, horario, data, categorias, descricao, status, prazo, local} = req.body;
+        const {nomeEvento, horario, data, categorias, descricao, status, prazo, local, tipo} = req.body;
 
         const categoriasObj = JSON.parse(categorias);
 
@@ -19,6 +19,7 @@ const createEvent = async (req: Request, res: Response) => {
             descricao,
             status,
             prazo,
+            tipo,
             local,
             categoriasObj
         })
