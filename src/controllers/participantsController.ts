@@ -16,7 +16,7 @@ const createParticipants = async (req: Request, res: Response) => {
                 status
             }
         );
-        res.status(200).json({status: 'ITEM_CREATED'});
+        res.redirect(`${process.env.FRONTEND}evento/${idEvent}/categoria/${idCategory}`);
 
     } catch {
         res.status(500).json({status: 'INTERNAL_ERROR'})

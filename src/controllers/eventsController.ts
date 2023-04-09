@@ -22,9 +22,7 @@ const createEvent = async (req: Request, res: Response) => {
             local,
             categoriasObj
         })
-
-        res.status(200).json({status: 'ITEM_CREATED'});
-
+        res.redirect( `${process.env.FRONTEND}evento/${id}` );
     } catch {
         res.status(500).json({status: 'INTERNAL_ERROR'})
     }
