@@ -16,7 +16,7 @@ app.get('/', (req: any, res: any) => {
 })
 // Cors
 app.use(cors({
-    origin: ['http://localhost:3000']
+    origin: [`${process.env.FRONTEND}`]
 }))
 
 //Rotas
