@@ -4,7 +4,7 @@ import eventsRouter from "./src/routes/eventsRouter";
 // Serve port
 const PORT = process.env.PORT || 4000
 // Serve host
-const HOSTNAME = process.env.HOSTNAME || 'http://localhost'
+const HOSTNAME = process.env.HOSTNAME || 'https://localhost'
 // App Express
 const app = express()
 // JSON
