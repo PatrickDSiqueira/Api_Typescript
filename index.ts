@@ -16,9 +16,8 @@ app.get('/', (req: any, res: any) => {
 })
 // Cors
 app.use(cors({
-    origin: [`${process.env.FRONTEND}`]
+    origin: [`${process.env.FRONTEND}`, 'https://localhost:4000/']
 }))
-
 //Rotas
 app.use('/api/admin/', eventsRouter)
 // Default response to any other requests:
